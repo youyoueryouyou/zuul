@@ -1,6 +1,5 @@
 package com.you.cloud.zuul.filter;
 
-import cn.hutool.core.util.CharsetUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
