@@ -20,7 +20,6 @@ import java.util.Iterator;
  */
 @Component
 public class AuthFilter extends ZuulFilter {
-    private static Logger log = LoggerFactory.getLogger(AuthFilter.class);
     @Override
     public String filterType() {
         return "pre";
