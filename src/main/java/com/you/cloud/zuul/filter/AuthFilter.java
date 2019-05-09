@@ -1,5 +1,6 @@
 package com.you.cloud.zuul.filter;
 
+import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
 import cn.hutool.crypto.symmetric.SymmetricCrypto;
@@ -121,8 +122,13 @@ public class AuthFilter extends ZuulFilter {
         }
         if (StrUtil.isNotEmpty(token)){
             try{
-                SymmetricCrypto sm4 = new SymmetricCrypto("SM4");
-                JSONObject json = JSONUtil.parseObj(sm4.decryptStr(token));
+                if (token.length() < 24){
+                    jsonObject.put("code",2);
+                    jsonObject.put("message","header param token is error.");
+                    sendErrorResponse(ctx,jsonObject.toString());
+                    return null;
+                }
+                JSONObject json = JSONUtil.parseObj(SecureUtil.desede(token.substring(0,24).getBytes()).decryptStr(token.substring(24)));
                 if (json.size() == 0){
                     jsonObject.put("code",2);
                     jsonObject.put("message","header param token is error.");
