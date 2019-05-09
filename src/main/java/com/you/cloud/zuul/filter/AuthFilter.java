@@ -1,18 +1,13 @@
 package com.you.cloud.zuul.filter;
 
-import cn.hutool.core.util.RandomUtil;
 import cn.hutool.core.util.StrUtil;
 import cn.hutool.crypto.SecureUtil;
-import cn.hutool.crypto.symmetric.SymmetricCrypto;
 import cn.hutool.json.JSONObject;
 import cn.hutool.json.JSONUtil;
 import com.netflix.zuul.ZuulFilter;
 import com.netflix.zuul.context.RequestContext;
 import com.you.cloud.zuul.cache.CacheManager;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
-
 import javax.servlet.http.HttpServletRequest;
 import java.util.Iterator;
 
